@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
-import { FaSearch, FaHeart, FaShoppingCart, FaBars, FaMoon, } from "react-icons/fa";
+import { FaSearch, FaHeart, FaShoppingCart, FaBars, FaMoon } from "react-icons/fa";
 import { VscClose } from "react-icons/vsc";
 import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import { RootState } from "../../redux";
 import { useCheckTokenQuery } from "../../redux/api/client-api";
-import { RxAvatar } from "react-icons/rx";
 import logo from "../../assets/images/logo.png";
 import user_foto from "../../assets/images/user.png";
 import { IoSunnyOutline } from "react-icons/io5";
+import { FiHeart } from "react-icons/fi";
+import { PiShoppingCart } from "react-icons/pi";
+import { RxAvatar } from "react-icons/rx";
 
 const Header = () => {
   let [menu, setMenu] = useState(false);
@@ -37,7 +39,7 @@ const Header = () => {
   return (
     <header className="w-full bg-white dark:bg-gray-900 text-black dark:text-white transition-colors relative">
       <div className="bg-black text-white text-center py-2 text-sm dark:bg-gray-800">
-        Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%! {" "}
+        Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!{" "}
         <span className="font-bold cursor-pointer underline">ShopNow</span>
       </div>
 
@@ -65,14 +67,14 @@ const Header = () => {
 
         <div className="hidden lg:flex space-x-4 items-center">
           <div className="relative">
-            <span className="px-1 bg-red-500 text-white rounded-2xl absolute top-[-15px] left-4">{wishlist.length}</span>
+            <span className="px-1 bg-red-500 text-white rounded-2xl absolute top-[-10px] left-4 text-xs">{wishlist.length}</span>
             <NavLink to="/wishlist">
               <FaHeart className="cursor-pointer text-2xl" />
             </NavLink>
           </div>
           <div className="relative">
-            <span className="px-1 bg-red-500 text-white rounded-2xl absolute top-[-15px] left-4">{cartData.length}</span>
-            <NavLink to="/card">
+            <span className="px-1 bg-red-500 text-white rounded-2xl absolute top-[-10px] left-4 text-xs">{cartData.length}</span>
+            <NavLink to="/cart">
               <FaShoppingCart className="cursor-pointer text-2xl" />
             </NavLink>
           </div>
@@ -87,7 +89,7 @@ const Header = () => {
                 {data.username.charAt(0).toUpperCase()}
               </div>
             ) : (
-            <RxAvatar className="cursor-pointer text-4xl text-gray-700 dark:text-gray-300" />
+              <RxAvatar className="cursor-pointer text-4xl text-gray-700 dark:text-gray-300" />
             )}
           </NavLink>
         </div>
@@ -108,13 +110,44 @@ const Header = () => {
         </nav>
       )}
 
-      {/* Dark mode toggle positioned in the top-right corner */}
+      {/* Dark mode toggle */}
       <button
         onClick={() => setDarkMode(!darkMode)}
         className="fixed top-4 right-4 bg-gray-300 dark:bg-gray-700 text-black dark:text-white p-4 rounded-full shadow-lg transition-all text-2xl"
       >
         {darkMode ? <IoSunnyOutline size={28} /> : <FaMoon size={28} />}
       </button>
+
+      {/* Mobile Bottom Icons */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-white dark:bg-gray-900 shadow-lg py-3 flex justify-around items-center z-50">
+        <NavLink to={"/wishlist"} className="relative">
+          <FiHeart className="cursor-pointer text-3xl text-gray-700 dark:text-white" />
+          {wishlist.length > 0 && (
+            <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">{wishlist.length}</span>
+          )}
+        </NavLink>
+        
+        <NavLink to="/cart" className="relative">
+          <PiShoppingCart className="cursor-pointer text-3xl text-gray-700 dark:text-white" />
+          {cartData.length > 0 && (
+            <span className="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full px-1">{cartData.length}</span>
+          )}
+        </NavLink>
+
+        <NavLink to={isSuccess ? "/profile" : "/sign-in"}>
+          {isFetching ? (
+            <div className="w-12 h-12 flex items-center justify-center bg-gray-200 text-gray-600 font-bold rounded-full">
+              ⏳
+            </div>
+          ) : isSuccess && data?.username ? (
+            <div className="w-12 h-12 flex items-center justify-center bg-gray-700 text-white font-bold rounded-full">
+              {data.username.charAt(0).toUpperCase()}
+            </div>
+          ) : (
+            <RxAvatar className="cursor-pointer text-3xl text-gray-700 dark:text-white" />
+          )}
+        </NavLink>
+      </div>
     </header>
   );
 };
