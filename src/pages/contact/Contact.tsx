@@ -8,14 +8,12 @@ const Contact: React.FC = () => {
       <div className="max-w-2xl w-full bg-white dark:bg-gray-800 p-8 md:p-16 shadow-2xl rounded-2xl text-center transition-all duration-300">
         <h1 className="text-4xl font-bold text-gray-800 dark:text-white mb-8">Contact Me</h1>
         
-        {/* ✅ Rasm va ism mobilda ustma-ust bo'ladi */}
         <div className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6 mb-8">
           <img src={my_foto} alt="Developer"
             className="w-32 h-32 md:w-48 md:h-48 rounded-full shadow-lg border-4 border-gray-400 dark:border-gray-600 transition-all duration-300" />
           <h2 className="text-2xl md:text-4xl font-semibold text-gray-800 dark:text-white text-center md:text-left">Alijon Abdumajidov</h2>
         </div>
 
-        {/* ✅ Telefon raqami va tugma mobilda ustma-ust bo'ladi */}
         <div className="flex flex-col md:flex-row items-center justify-center space-y-3 md:space-y-0 md:space-x-6 mb-8">
           <a
             href="tel:+998977553593"
@@ -31,7 +29,6 @@ const Contact: React.FC = () => {
           </a>
         </div>
 
-        {/* ✅ Ijtimoiy tarmoqlar zichlashib ketmasligi uchun flex-wrap */}
         <div className="flex justify-center flex-wrap gap-6 md:gap-10 mt-8">
           <a
             href="https://www.linkedin.com/in/alijon-abdumajidov-9418512b7/"
@@ -73,7 +70,6 @@ const Contact: React.FC = () => {
           </a>
         </div>
 
-        {/* ✅ Portfolio linki pastda yaxshi joylashishi uchun */}
         <div className="mt-6 text-center">
           <a
             href="https://portfolio-abdumajidovs-projects.vercel.app"

@@ -11,7 +11,7 @@ const EmptyWishlist = () => {
         Explore our collection and add your favorite items to your wishlist!
       </p>
       <button
-        className="px-4 sm:px-6 py-2 sm:py-3 bg-black dark:bg-white text-white dark:text-black rounded-lg shadow hover:bg-gray-700 dark:hover:bg-gray-300 transition duration-300"
+        className="px-4 sm:px-6 py-2 sm:py-3 bg-green-600 dark:bg-white text-white dark:text-black rounded-lg shadow hover:bg-gray-700 dark:hover:bg-gray-300 transition duration-300"
         onClick={() => navigate("/")}
       >
         Go Home
